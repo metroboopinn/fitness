@@ -1,0 +1,14 @@
+# system
+.DS_Store
+Thumbs.db
+
+# vs
+.vscode/
+
+# dane i cwiczenia
+data/kalorie.json
+cwiczenia/*
+!cwiczenia/.gitkeep
+
+# tymczasowe
+*.log
