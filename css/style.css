@@ -1,0 +1,78 @@
+:root {
+    /* Light Mode */
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --accent-color: #2ecc71;
+    --accent-hover: #27ae60;
+    --border-color: #ddd;
+    --danger: #e74c3c;
+}
+
+[data-theme="dark"] {
+    /* Dark Mode */
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-color: #f4f4f4;
+    --accent-color: #00ff88;
+    --accent-hover: #00cc6e;
+    --border-color: #444;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Przełącznik w rogu */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+/* Karty i sekcje */
+section {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 1px solid var(--border-color);
+}
+
+input, select, button {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+button[type="submit"] {
+    background: var(--accent-color);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1a1a1a;
+}
+
+button[type="submit"]:hover {
+    background: var(--accent-hover);
+}
+
+a { color: var(--danger); text-decoration: none; font-weight: bold; }
+ul { list-style: none; padding: 0; }
+li { padding: 8px 0; border-bottom: 1px dotted var(--border-color); }

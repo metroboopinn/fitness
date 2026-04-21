@@ -9,6 +9,8 @@ Thumbs.db
 data/kalorie.json
 cwiczenia/*
 !cwiczenia/.gitkeep
+!cwiczenia/Nogi/.gitkeep
+!cwiczenia/Ręce/.gitkeep
 
 # tymczasowe
 *.log
