@@ -4,6 +4,33 @@ include 'includes/header.php';
 
 $bmi_result = null;
 
+if (isset($_GET['delete_plan'])) {
+    $plan = $_GET['delete_plan'];
+    $path = "cwiczenia/" . $plan;
+
+    if (is_dir($path)) {
+        $files = array_diff(scandir($path), array('.', '..'));
+        foreach ($files as $file) {
+            unlink($path . "/" . $file);
+        }
+        rmdir($path);
+    }
+    header("Location: index.php");
+    exit;
+}
+
+if (isset($_GET['delete_ex'])) {
+    $plan = $_GET['plan'];
+    $file = $_GET['file'];
+    $path = "cwiczenia/" . $plan . "/" . $file;
+
+    if (file_exists($path)) {
+        unlink($path);
+    }
+    header("Location: index.php");
+    exit;
+}
+
 if (isset($_POST['calc_bmi'])) {
     $waga = (float)$_POST['weight'];
     $wzrost = (float)$_POST['height'];
@@ -66,24 +93,33 @@ if (isset($_POST['submit_workout'])) {
     <hr>
 
     <section id="workout-list">
-        <h2>Plany</h2>
-        <?php
-        $dir = 'cwiczenia/';
-        if (is_dir($dir)) {
-            $folders = array_diff(scandir($dir), array('.', '..'));
-            foreach ($folders as $folder) {
-                if (is_dir($dir . $folder)) {
-                    echo "<h3>$folder</h3><ul>";
-                    $files = array_diff(scandir($dir . $folder), array('.', '..'));
-                    foreach ($files as $file) {
+    <h2>Plany</h2>
+    <?php
+    $dir = 'cwiczenia/';
+    if (is_dir($dir)) {
+        $folders = array_diff(scandir($dir), array('.', '..'));
+        foreach ($folders as $folder) {
+            if (is_dir($dir . $folder)) {
+                echo "<div style='margin-bottom: 20px;'>";
+                echo "<h3>$folder ";
+                echo "<a href='index.php?delete_plan=$folder' style='color:orange; font-size:12px; text-decoration:none;' onclick=\"return confirm('Usunąć cały plan?')\">[Usuń Plan]</a>";
+                echo "</h3><ul>";
+                
+                $files = array_diff(scandir($dir . $folder), array('.', '..'));
+                foreach ($files as $file) {
+                    if ($file !== '.gitkeep') {
                         $info = file_get_contents($dir . $folder . "/" . $file);
-                        echo "<li>" . str_replace('.txt', '', $file) . ": $info</li>";
+                        echo "<li>";
+                        echo "<strong>" . str_replace('.txt', '', $file) . "</strong> - $info ";
+                        echo "<a href='index.php?delete_ex=1&plan=$folder&file=$file' style='color:red; text-decoration:none; margin-left:10px;'>[Usuń]</a>";
+                        echo "</li>";
                     }
-                    echo "</ul>";
                 }
+                echo "</ul></div>";
             }
         }
-        ?>
+    }
+    ?>
     </section>
 </body>
 </html>
