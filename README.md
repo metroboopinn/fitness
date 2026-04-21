@@ -1,4 +1,4 @@
-# fitness# Projekt: Kalkulator Fitness
+# Projekt: Kalkulator Fitness
 
 Aplikacja webowa ułatwiająca kontrolowanie diety oraz planowanie treningów. Projekt został wykonany w języku PHP i nie wymaga zewnętrznej bazy danych, ponieważ wszystkie informacje są zapisywane w plikach tekstowych oraz plikach JSON.
 
